@@ -2,7 +2,7 @@ import os
 import monitor_connection
 import pandas as pd
 
-path = str(os.path.abspath(__file__)).replace("src/main.py", "")
+path = str(os.path.abspath(__file__)).replace("src/main.py", "").replace("src\\main.py", "")
 
 URL = "http://192.168.178.14"
 
@@ -22,9 +22,10 @@ PW = input("Please enter your password:")
 requestor = monitor_connection.requestor(URL, PW)
 dataset = requestor.getData(time_block)
 index = dataset.index.tolist()
-begin = str(index[0])
-end = str(index[len(index) - 1])
-begin.replace(" ", "_")
-end.replace(" ", "_")
+begin = index[0]
+end = index[len(index) - 1]
 
-dataset.to_csv(path_or_buf= path + time_block + "_" + str(begin) + "_to_" + str(end) + ".csv")
+begin_string = str(begin.year) + "-" + str(begin.month) + "-" + str(begin.day) + "-" + str(begin.hour) + ":" + str(begin.minute)
+end_string = str(end.year) + "-" + str(end.month) + "-" + str(end.day) + "-" + str(end.hour) + ":" + str(end.minute)
+
+dataset.to_csv(path_or_buf= path + time_block + "_" + begin_string + "_to_" + end_string + ".csv")
