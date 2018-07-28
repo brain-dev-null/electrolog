@@ -15,8 +15,8 @@ def run(URL, PW):
     dates           = dataset["Date"].tolist()
     begin           = dates[0]
     end             = dates[len(dates) - 1]
-    begin_string    = str(begin.year) + "-" + str(begin.month) + "-" + str(begin.day) + "-" + str(begin.hour) + ":" + str(begin.minute)
-    end_string      = str(end.year) + "-" + str(end.month) + "-" + str(end.day) + "-" + str(end.hour) + ":" + str(end.minute)
+    begin_string    = str(begin.year) + "-" + str(begin.month) + "-" + str(begin.day) + "-" + str(begin.hour) + "h" + str(begin.minute) + "m"
+    end_string      = str(end.year) + "-" + str(end.month) + "-" + str(end.day) + "-" + str(end.hour) + "h" + str(end.minute) + "m"
 
     dataset.to_csv(path_or_buf= path + time_block + "_" + begin_string + "_to_" + end_string + ".csv")
 
