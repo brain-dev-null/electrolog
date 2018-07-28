@@ -12,9 +12,9 @@ def run(URL, PW):
     time_block      = blocks[dataset_index]
     requestor       = monitor_connection.requestor(URL, PW)
     dataset         = requestor.getData(time_block)
-    index           = dataset.index.tolist()
-    begin           = index[0]
-    end             = index[len(index) - 1]
+    dates           = dataset["Date"].tolist()
+    begin           = dates[0]
+    end             = dates[len(dates) - 1]
     begin_string    = str(begin.year) + "-" + str(begin.month) + "-" + str(begin.day) + "-" + str(begin.hour) + ":" + str(begin.minute)
     end_string      = str(end.year) + "-" + str(end.month) + "-" + str(end.day) + "-" + str(end.hour) + ":" + str(end.minute)
 

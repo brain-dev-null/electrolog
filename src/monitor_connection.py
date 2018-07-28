@@ -3,17 +3,15 @@ import pandas as pd
 import numpy as np
 
 class requestor():
-    def data_row(self, unit, delta_seconds, values, index):
+    def data_row(self, unit, begin_timestamp, delta_seconds, values, index):
         if unit == 'kWh':
             total = float(values[index].replace(",", "."))
             avg = total / 0.024
         else:
             avg = float(values[index].replace(",","."))
             total = (delta_seconds * avg) / 3600000
-        return {"AvgPower(in W)":avg,"TotalConsumption(in kWh)":total}
-
-    def timestamp_row(self, begin_timestamp, delta_seconds, index):
-        return pd.Timestamp(begin_timestamp + np.timedelta64(delta_seconds * index, 's'))
+        date = pd.Timestamp(begin_timestamp + np.timedelta64(delta_seconds * index, 's'))
+        return {"Date":date, "AvgPower(in W)":avg,"TotalConsumption(in kWh)":total}
 
     def __init__(self, URL:str,PW:str):
         self.URL = URL
@@ -51,8 +49,8 @@ class requestor():
             begin_timestamp     = np.datetime64( api_json_response["tm"])
             delta_seconds       = int(api_json_response["dt"])
             for index in range(0, len(values)-1):
-                timestamps.append(self.timestamp_row(begin_timestamp, delta_seconds, index))
-                data.append(self.data_row(unit, delta_seconds, values, index))
-        data_frame = pd.DataFrame(data=data, index=timestamps)
-        data_frame.sort_index(inplace=True)
+                data.append(self.data_row(unit, begin_timestamp, delta_seconds, values, index))
+
+        data_frame = pd.DataFrame(data=data)
+        data_frame.sort_values(by=["Date"], inplace=True)
         return data_frame
