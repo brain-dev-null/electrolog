@@ -3,6 +3,11 @@ import monitor_connection
 import pandas as pd
 import xlwt as xl
 
+def reorder_dataset(dataset):
+    cols = dataset.columns.tolist()
+    cols = [cols[1],cols[0],cols[2]]
+    return dataset[cols]
+
 def run(URL, PW):
     print("\nFollowing data is available:"+
             "\n[1]---Past Year (Daily Data)"+
@@ -12,7 +17,7 @@ def run(URL, PW):
     dataset_index   = input("Please select dataset [1-4]:")
     time_block      = blocks[dataset_index]
     requestor       = monitor_connection.requestor(URL, PW)
-    dataset         = requestor.getData(time_block)
+    dataset         = reorder_dataset(requestor.getData(time_block))
     dates           = dataset["Date"].tolist()
     begin           = dates[0]
     end             = dates[len(dates) - 1]
@@ -41,5 +46,3 @@ PW      = input("Please enter your password:")
 
 while(run(URL, PW) == True):
     pass
-
-
