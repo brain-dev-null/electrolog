@@ -1,6 +1,7 @@
 import os
 import monitor_connection
 import pandas as pd
+import xlwt as xl
 
 def run(URL, PW):
     print("\nFollowing data is available:"+
@@ -17,8 +18,13 @@ def run(URL, PW):
     end             = dates[len(dates) - 1]
     begin_string    = str(begin.year) + "-" + str(begin.month) + "-" + str(begin.day) + "-" + str(begin.hour) + "h" + str(begin.minute) + "m"
     end_string      = str(end.year) + "-" + str(end.month) + "-" + str(end.day) + "-" + str(end.hour) + "h" + str(end.minute) + "m"
+    filename        = time_block + "_" + begin_string + "_to_" + end_string + ".xls"
 
-    dataset.to_csv(path_or_buf= path + time_block + "_" + begin_string + "_to_" + end_string + ".csv")
+    wb = xl.Workbook()
+    wb.add_sheet("Sheet1")
+    wb.save(path + filename)
+    dataset.to_excel(excel_writer=path+filename, index=False)
+
 
     if (input("Create another dataset?[y/n]") == "y"):
         return True
