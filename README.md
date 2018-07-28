@@ -16,7 +16,6 @@ The basic functionality will consist of a simple executable file for windows tha
 3. For the dependencies to install run the following command:
 
    `pip install pandas numpy requests`
-4. Enter the IP-adress of your LS110 device in the config.txt and save it
    
 ## __Usage__
 
