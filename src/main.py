@@ -2,6 +2,7 @@ import os
 import monitor_connection
 import pandas as pd
 import xlwt as xl
+from matplotlib import pyplot as plt
 
 def reorder_dataset(dataset):
     cols = dataset.columns.tolist()
@@ -30,7 +31,9 @@ def run(URL, PW):
     wb.save(path + filename)
     dataset.to_excel(excel_writer=path+filename, index=False)
 
-
+    plt.plot(dataset["Date"], dataset["AvgPower(in W)"])
+    plt.show()
+    
     if (input("Create another dataset?[y/n]") == "y"):
         return True
     else:
