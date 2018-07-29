@@ -12,8 +12,6 @@ The basic functionality will consist of simple executables for Windows and Linux
 
     `python get-pip.py`
 3. Dependencies will install with the first launch of the run-script
-
-4. If the IP of your LS110 isn't __192.168.178.14__ then change it in "src/main.py" under the variable "URL"
    
 ## __Usage__
 
