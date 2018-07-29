@@ -32,6 +32,14 @@ def run(URL, PW):
     dataset.to_excel(excel_writer=path+filename, index=False)
 
     plt.plot(dataset["Date"], dataset["AvgPower(in W)"])
+    plt.title("Average Power per " + deltas[dataset_index])
+    plt.xlabel("Last " + time_block)
+    plt.ylabel("Avg Power (Watt)")
+    plt.show()
+    plt.plot(dataset["Date"], dataset["TotalConsumption(in kWh)"])
+    plt.title("Total Power Consumption per " + deltas[dataset_index])
+    plt.xlabel("Last " + time_block)
+    plt.ylabel("Total Power Consumption (kWh)")
     plt.show()
     
     if (input("Create another dataset?[y/n]") == "y"):
@@ -41,6 +49,7 @@ def run(URL, PW):
 
 path    = str(os.path.abspath(__file__)).replace("src/main.py", "").replace("src\\main.py", "")
 blocks  = {"1":"year", "2":"week", "3":"day", "4":"hour"}
+deltas  = {"1":"day", "2":"hour", "3":"10 minutes", "4":"minute"}
 
 print("----Welcome to Electro Log!----\n")
 
