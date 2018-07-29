@@ -54,7 +54,7 @@ deltas  = {"1":"day", "2":"hour", "3":"10 minutes", "4":"minute"}
 print("----Welcome to Electro Log!----\n")
 
 URL     = "http://192.168.178.14"
-NEWURL  = input("Please enter your LS110-device's IP (default is 192.168.178.14))
+NEWURL  = input("Please enter your LS110-device's IP (default is 192.168.178.14):")
 if (len(NEWURL) > 0): URL = "http://" + NEWURL
 PW      = input("Please enter your password:")
 
