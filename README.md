@@ -2,7 +2,7 @@
 
 Electro Log is a python-based data-analysis-tool that communicates with a *"You Less LS110"* kWh-meter that logs the electrical power usage in a household and provides its data via an API specified [here](http://wiki.td-er.nl/index.php?title=YouLess)
 
-The basic functionality will consist of simple executables for Windows and Linux that return the electricity-usage-data in a .xls spreadsheet with a chosen granularity.
+The basic functionality consists of simple executables for Windows and Linux that return the electricity-usage-data in a .xls spreadsheet within a chosen time-intervall (year, month, week, day or hour).
 
 
 ## __Installation__
