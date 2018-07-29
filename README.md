@@ -22,5 +22,6 @@ The basic functionality will consist of simple executables for Windows and Linux
    Linux:   execute run.sh
 2. Enter your device's IP if it's not the default, else just press "Enter"
 3. Enter your password for the device
-4. Choose your desired data-set granulation (year, week, day, hour)
-5. The program will save the data as a .xls into the script's directory as "_timestamp-begin_\_to\__timestamp-end_.xls" and display both the average power draw and then the total power consumption
+4. Choose your desired data-set intervall (year, week, day, hour)
+5. The program wil show you the average powedraw and the total power consumption plotted against the chosen time-intervall.
+6. After closing both plots it will ask you, wether you want to save the data as a .xls into the script's directory as "_timestamp-begin_\_to\__timestamp-end_.xls".
