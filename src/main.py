@@ -15,6 +15,7 @@ def run(URL, PW):
             "\n[2]---Past Week (Hourly Data)"+
             "\n[3]---Past Day  (10-minute-intervall Data)"+
             "\n[4]---Past Hour (Minutely Data)\n\n")
+
     dataset_index   = input("Please select dataset [1-4]:")
     time_block      = blocks[dataset_index]
     requestor       = monitor_connection.requestor(URL, PW)
@@ -26,22 +27,27 @@ def run(URL, PW):
     end_string      = str(end.year) + "-" + str(end.month) + "-" + str(end.day) + "-" + str(end.hour) + "h" + str(end.minute) + "m"
     filename        = time_block + "_" + begin_string + "_to_" + end_string + ".xls"
 
-    wb = xl.Workbook()
-    wb.add_sheet("Sheet1")
-    wb.save(path + filename)
-    dataset.to_excel(excel_writer=path+filename, index=False)
-
-    plt.plot(dataset["Date"], dataset["AvgPower(in W)"])
-    plt.title("Average Power per " + deltas[dataset_index])
-    plt.xlabel("Last " + time_block)
-    plt.ylabel("Avg Power (Watt)")
-    plt.show()
-    plt.plot(dataset["Date"], dataset["TotalConsumption(in kWh)"])
-    plt.title("Total Power Consumption per " + deltas[dataset_index])
-    plt.xlabel("Last " + time_block)
-    plt.ylabel("Total Power Consumption (kWh)")
+    
+    f1 = plt.figure()
+    ax1 = f1.add_subplot(111)
+    ax1.plot(dataset["Date"], dataset["AvgPower(in W)"])
+    f1.suptitle("Average Powerdraw per " + deltas[dataset_index] + " over the past " + time_block)
+    ax1.set_xlabel("Date")
+    ax1.set_ylabel("Watt")
+    f2 = plt.figure()
+    ax2 = f2.add_subplot(111)
+    ax2.plot(dataset["Date"], dataset["TotalConsumption(in kWh)"])
+    f2.suptitle("Total Power Consumption per " + deltas[dataset_index] + " over the past " + time_block)
+    ax2.set_xlabel("Date")
+    ax2.set_ylabel("kWh")
     plt.show()
     
+    if(input("Save the dataset to .xls file?[y/n]") == "y"):
+        wb = xl.Workbook()
+        wb.add_sheet("Sheet1")
+        wb.save(path + filename)
+        dataset.to_excel(excel_writer=path+filename, index=False)
+
     if (input("Create another dataset?[y/n]") == "y"):
         return True
     else:
