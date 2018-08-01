@@ -23,3 +23,21 @@ The basic functionality consists of simple executables for Windows and Linux tha
 4. Choose your desired data-set intervall (year, week, day, hour)
 5. The program wil show you the average powedraw and the total power consumption plotted against the chosen time-intervall.
 6. After closing both plots it will ask you, wether you want to save the data as a .xls into the script's directory as "_timestamp-begin_\_to\__timestamp-end_.xls".
+
+```
+----Welcome to Electro Log!----
+
+Please enter your LS110-device's IP (default is 192.168.178.14):
+Please enter your password:
+
+Following data is available:
+[1]---Past Year (Daily Data)
+[2]---Past Week (Hourly Data)
+[3]---Past Day  (10-minute-intervall Data)
+[4]---Past Hour (Minutely Data)
+
+
+Please select dataset [1-4]:
+Save the dataset to .xls file?[y/n]
+Create another dataset?[y/n]
+```
