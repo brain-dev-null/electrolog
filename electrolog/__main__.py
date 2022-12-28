@@ -12,18 +12,24 @@ if __name__ == "__main__":
         default_ip = ""
 
     if in_dev:
-        handler = logging.StreamHandler()
-        log_level = logging.DEBUG
+        logging.basicConfig(
+            level=logging.DEBUG,
+            style="{",
+            format=(
+                "{asctime} - {levelname:<8} - {filename}:{funcName}:{lineno} -"
+                " {message}"
+            ),
+            handlers=[logging.StreamHandler()],
+        )
     else:
-        handler = logging.FileHandler("electrolog.log")
-        log_level = logging.INFO
-
-    logging.basicConfig(
-        level=logging.DEBUG,
-        style="{",
-        format="{asctime} - {levelname:<8} - {filename}:{funcName}:{lineno} - "
-        "{message}",
-        handlers=[handler],
-    )
+        logging.basicConfig(
+            level=logging.INFO,
+            style="{",
+            format=(
+                "{asctime} - {levelname:<8} - {filename}:{funcName}:{lineno} -"
+                " {message}"
+            ),
+            handlers=[logging.FileHandler("electrolog.log")],
+        )
 
     main(in_dev, default_ip=default_ip)

@@ -23,7 +23,6 @@ IP_REGEX = re.compile(IP_PATTERN)
 
 class LoginView:
     def __init__(self, root: tk.Tk, default_ip: Optional[str] = "") -> None:
-
         if os.path.isfile("ip.txt"):
             with open("ip.txt", "r") as ip_file:
                 default_ip = ip_file.read()

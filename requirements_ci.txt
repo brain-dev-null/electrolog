@@ -1,0 +1,6 @@
+pandas-stubs
+pyinstaller
+types-requests
+mypy
+flake8
+pytest

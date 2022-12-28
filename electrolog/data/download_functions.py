@@ -10,7 +10,8 @@ def download_past_hour(session: Session, base_url: str) -> DataFrame:
     url = f"{base_url}/V"
 
     responses = [
-        session.get(url, params={"h": page, "f": "j"}) for page in range(1, 3)
+        session.get(url, params={"h": str(page), "f": "j"})
+        for page in range(1, 3)
     ]
 
     page_dataframes = [
@@ -25,7 +26,8 @@ def download_past_day(session: Session, base_url: str) -> DataFrame:
     url = f"{base_url}/V"
 
     responses = [
-        session.get(url, params={"w": page, "f": "j"}) for page in range(1, 4)
+        session.get(url, params={"w": str(page), "f": "j"})
+        for page in range(1, 4)
     ]
 
     page_dataframes = [
@@ -40,7 +42,8 @@ def download_past_week(session: Session, base_url: str) -> DataFrame:
     url = f"{base_url}/V"
 
     responses = [
-        session.get(url, params={"d": page, "f": "j"}) for page in range(1, 7)
+        session.get(url, params={"d": str(page), "f": "j"})
+        for page in range(1, 7)
     ]
 
     page_dataframes = [
@@ -55,7 +58,8 @@ def download_past_year(session: Session, base_url: str) -> DataFrame:
     url = f"{base_url}/V"
 
     responses = [
-        session.get(url, params={"m": page, "f": "j"}) for page in range(1, 13)
+        session.get(url, params={"m": str(page), "f": "j"})
+        for page in range(1, 13)
     ]
 
     page_dataframes = [

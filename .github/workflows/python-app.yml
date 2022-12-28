@@ -26,9 +26,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install flake8
+        pip install -r requirements_ci.txt
     - name: Run linter
       run: flake8 electrolog
+    - name: Run type checker
+      run: mypy electrolog
     - name: Build application
       run: |
         pyinstaller -F electrolog/__main__.py -n electrolog --hiddenimport xlwt
@@ -52,9 +54,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install flake8
+        pip install -r requirements_ci.txt
     - name: Run linter
       run: flake8 electrolog
+    - name: Run type checker
+      run: mypy electrolog
     - name: Build application
       run: |
         pyinstaller -F electrolog\__main__.py -n electrolog.exe --hiddenimport xlwt
