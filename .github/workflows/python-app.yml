@@ -33,7 +33,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
       with:
-        name: electrolog_linux
+        name: electrolog
         path: dist/electrolog
         if-no-files-found: error
 
@@ -57,7 +57,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
       with:
-        name: electrolog_windows
+        name: electrolog.exe
         path: dist\electrolog.exe
         if-no-files-found: error
   
@@ -75,5 +75,4 @@ jobs:
         prerelease: true
         title: "Development Build"
         files: |
-          electrolog
-          electrolog.exe
+          electrolog*
