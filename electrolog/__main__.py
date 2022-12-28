@@ -5,7 +5,7 @@ from electrolog.views import IP_REGEX
 from electrolog.electrolog import main
 
 if __name__ == "__main__":
-    in_dev = '--dev' in sys.argv
+    in_dev = "--dev" in sys.argv
     if IP_REGEX.fullmatch(sys.argv[-1]) is not None:
         default_ip = sys.argv[-1]
     else:
