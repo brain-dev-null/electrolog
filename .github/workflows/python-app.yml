@@ -77,4 +77,5 @@ jobs:
         prerelease: true
         title: "Development Build"
         files: |
-          electrolog*
+          electrolog
+          electrolog.exe
