@@ -14,9 +14,8 @@ permissions:
 
 jobs:
   build_linux:
-
+    name: Linux Build
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -38,9 +37,8 @@ jobs:
         if-no-files-found: error
 
   build_windows:
-
+    name: Windows Build
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -61,7 +59,8 @@ jobs:
         path: dist\electrolog.exe
         if-no-files-found: error
   
-  pre-relase:
+  pre_relase:
+    name: Generate Pre-Release
     runs-on: ubuntu-latest
     needs: [build_linux, build_windows]
     permissions:
