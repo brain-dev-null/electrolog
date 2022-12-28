@@ -139,7 +139,8 @@ class DataSelectionView:
     def export_callback(self) -> None:
         selected_range = self.range_selection.get()
         index = self.GRANULARITIES.index(selected_range)
-        LOGGER.info(f'Export using range {index}')
+
+        LOGGER.info(f'Export using range "{selected_range}"')
 
         match index:
             case 0:
@@ -153,9 +154,12 @@ class DataSelectionView:
 
         output_file = filedialog.asksaveasfilename(
             title='Store retrieved data',
+            initialfile='output',
             defaultextension='.xls',
         )
 
-        if len(output_file) == 0:
+        LOGGER.info(f'Store data at "{output_file}"')
+
+        if len(output_file) > 0:
             data.to_excel(output_file)
         
