@@ -29,7 +29,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build application
       run: |
-        pyinstaller -F electrolog/__main__.py -n electrolog
+        pyinstaller -F electrolog/__main__.py -n electrolog --hiddenimport xlwt
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
       with:
@@ -53,7 +53,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build application
       run: |
-        pyinstaller -F electrolog\__main__.py -n electrolog.exe
+        pyinstaller -F electrolog\__main__.py -n electrolog.exe --hiddenimport xlwt
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.1
       with:
