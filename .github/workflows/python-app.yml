@@ -27,16 +27,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
+    - name: Build application
       run: |
         pyinstaller -F electrolog/__main__.py -n electrolog
-    - name: release
-      uses: actions/create-release@v1
-      id: create_release
+    - name: releases-action
+      uses: nickatnight/releases-action@v2
       with:
-        draft: false
-        prerelease: false
-        release_name: test_relese
-        tag_name: test_release_v1
+        draft: true
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
