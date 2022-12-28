@@ -30,9 +30,18 @@ jobs:
     - name: Build application
       run: |
         pyinstaller -F electrolog/__main__.py -n electrolog
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: electrolog_linux
+        path: dist/electrolog
     - name: releases-action
       uses: nickatnight/releases-action@v2
-      with:
-        draft: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release Upload
+      uses: d1ceward/draft-assets-release-action@v1.0.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: electrolog
+        path: dist/electrolog
