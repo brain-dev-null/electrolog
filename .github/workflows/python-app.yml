@@ -35,6 +35,7 @@ jobs:
       with:
         name: electrolog_linux
         path: dist/electrolog
+        if-no-files-found: error
 
   build_windows:
 
@@ -58,3 +59,21 @@ jobs:
       with:
         name: electrolog_windows
         path: dist\electrolog.exe
+        if-no-files-found: error
+  
+  pre-relase:
+    runs-on: ubuntu-latest
+    needs: [build_linux, build_windows]
+    steps:
+    - uses: actions/download-artifact@v3
+    - run: |
+        chmod +x electrolog
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          electrolog
+          electrolog.exe
