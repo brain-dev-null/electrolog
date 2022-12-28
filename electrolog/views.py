@@ -1,4 +1,5 @@
 import logging
+import os
 import requests
 import tkinter as tk
 import time
@@ -17,6 +18,11 @@ IP_REGEX = re.compile(IP_PATTERN)
 
 class LoginView:
     def __init__(self, root: tk.Tk, default_ip: Optional[str] = "") -> None:
+
+        if os.path.isfile('ip.txt'):
+            with open('ip.txt', 'r') as ip_file:
+                default_ip = ip_file.read()
+
         self.root = root
         self.login_form = tk.Frame(root, padx=15, pady=15)
 
@@ -83,6 +89,8 @@ class LoginView:
             if login.ok:
                 LOGGER.info('Login successful!')
                 self.login_form.destroy()
+                with open('ip.txt', 'w') as ip_file:
+                    ip_file.write(IP)
                 DataSelectionView(self.root, session, host)
                 
             else:
